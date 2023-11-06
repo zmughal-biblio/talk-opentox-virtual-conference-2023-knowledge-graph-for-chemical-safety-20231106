@@ -1,0 +1,100 @@
+\usetikzlibrary{shapes,positioning,arrows,calc}
+\begin{tikzpicture}[>= triangle 60,
+  remember picture,
+  every node/.style={scale=0.65},
+  mygroup/.style={ draw,fill=yellow!20 }
+  ]
+	\node [mygroup] (biology) {
+		\begin{tikzpicture}
+			\node at (0,2) {Biology} ;
+			\node [draw,fill=gray!30, rectangle split, rectangle split parts=6,anchor=center]
+				(bio-types)
+			{
+				\nodepart{one}   Species
+				\nodepart{two}   Anatomy
+				\nodepart{three} Genes
+				\nodepart{four}  Proteins
+				\nodepart{five}  Pathways
+				\nodepart{six}   Phenotypes
+			} ;
+			\node [right=of bio-types, fill=green!30, draw,rounded corners,rectangle,align=center]
+			{
+				%\begin{center}
+				\begin{minipage}[c]{0.40\textwidth}
+					\begin{itemize}[label={}]
+						\item MeSH
+						\item Uberon
+						\item NCI Thesaurus
+						\item NCBI Taxonomy
+						\item HGNC
+						\item Protein Ontology
+					\end{itemize}
+				\end{minipage}
+				%\end{center}
+			} ;
+		\end{tikzpicture}
+	};
+	\node [mygroup,below=2 cm of biology]
+		(chemistry) {
+		\begin{tikzpicture}
+			\node at (0,2) {Chemistry} ;
+			\node [draw,fill=gray!30, rectangle split, rectangle split parts=4,anchor=center]
+				(chem-types)
+			{
+				\nodepart{one}   Chemical Identifier
+				\nodepart{two}   Quantities
+				\nodepart{three} Structure
+				\nodepart{four}  Reactions
+			} ;
+			\node [right=of chem-types, fill=green!30, draw,rounded corners,rectangle,align=center]
+			{
+				%\begin{center}
+				\begin{minipage}[c]{0.40\textwidth}
+					\begin{itemize}[label={}]
+						\item PubChem
+						\item CAS
+						\item InChIKey
+						\item MeSH
+						\item QUDT
+						\item Cheminformatics
+							Ontology\\(CHEMINF)
+						\item SMILES
+					\end{itemize}
+				\end{minipage}
+				%\end{center}
+			} ;
+		\end{tikzpicture}
+	} ;
+	\node [mygroup,below right=0.3 cm and 0.8 cm of biology]
+		(toxicology) {
+		\begin{tikzpicture}
+			\node at (0,2) {Toxicology} ;
+			\node [draw,fill=gray!30, rectangle split, rectangle split parts=6,anchor=center]
+				(tox-types)
+			{
+				\nodepart{one}   Evidence
+				\nodepart{two}   Methods (assay)
+				\nodepart{three} Exposure (e.g., route)
+				\nodepart{four}  Chemical-Gene Interactions
+				\nodepart{five}  Testing Outcomes
+				\nodepart{six}   Toxicokinetics/dynamics
+			} ;
+			\node [right=of tox-types, fill=green!30, draw,rounded corners,rectangle,align=center]
+			{
+				\begin{minipage}[c]{0.50\textwidth}
+					\begin{itemize}[label={}]
+						\item PubMed
+						\item DSSTox Chemical Identifier
+						\item Evidence and Conclusion (ECO)
+						\item Environment (ENVO)
+						\item Exposure (ExO)
+						\item Environmental conditions, treatments and exposures (ECTO)
+						\item httk
+					\end{itemize}
+				\end{minipage}
+			} ;
+		\end{tikzpicture}
+	}; 
+	\draw [->] (biology)  edge (toxicology) ;
+	\draw [->] (chemistry) edge (toxicology) ;
+\end{tikzpicture}

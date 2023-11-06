@@ -1,0 +1,139 @@
+%% vim:tw=66:spell:wrap:ft=tex:
+\ifx \printpresenthandout \undefined
+	\ifx \printpresentarticle \undefined
+		% no handout and no article
+		\documentclass{beamer}
+	\else
+		% print article
+		\documentclass[11pt]{article}
+		\usepackage{beamerarticle}
+	\fi
+\else
+	% handout
+	\documentclass[handout]{beamer}
+\fi
+% Preamble
+\input{preamble/present-helper.tex}
+% Beamer hack : <https://tex.stackexchange.com/questions/3455/problem-with-enumerate-package-in-beamer-class>
+\def\labelenumi{\theenumi}
+
+\begin{document}
+% {{{ Meta
+% meta needs to be in \begin{document} so that tabular works
+\input{meta/present.tex}
+%% transitions are made transparent rather than hidden
+%\setbeamercovered{transparent}
+%  - Title slide.%{{{
+\frame{\titlepage}
+%}}}
+
+\section{Problem space}
+\begin{frame}\frametitle{\secname}
+	Before you can answer a particular cheminformatics
+	question:
+	\begin{description}
+		\item[P0] Many different data sources for
+			cheminformatics and chemical safety.
+		\pause
+		\item[P1] Retrieving data sources for local
+			analysis.
+		\pause
+		\item[P2] Differences in how data are represented.
+	\end{description}
+\end{frame}
+
+\section{Solution: tabular data}
+\begin{frame}\frametitle{\secname}
+	\begin{itemize}
+		\item multiple data sources
+		\item local analysis
+	\end{itemize}
+	\pause
+	\begin{center}
+		BioBricks
+	\end{center}
+\end{frame}
+
+\section{Solution: graph data}
+\begin{frame}\frametitle{\secname}
+	\begin{itemize}
+		\item multiple data sources
+		\item local analysis
+		\pause
+		\item \textbf{interoperable data through common
+			vocabularies, identifiers, and ontologies}
+	\end{itemize}
+	\pause
+	\begin{center}
+		BioBricks-OKG
+	\end{center}
+\end{frame}
+
+\section{BioBricks-OKG}
+\begin{frame}{\secname}
+	\begin{itemize}
+		\item Working as part of NSF Proto-OKN program
+		\pause
+		\item Agency partner: NICEATM
+		\pause
+		\item Built on RDF metadata standard
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{RDF}
+  \begin{itemize}
+  \item RDF based on triple relationships
+  \end{itemize}
+  \begin{figure}[tbp]
+   \centering
+   \resizebox{0.4\textwidth}{!}{\input{gfx/simple-rdf.tex}}
+   %\caption{\textbf{}}
+  \label{fig:rdf}
+  \end{figure}
+\end{frame}
+
+\section{Technology}
+\begin{frame}{\secname}
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \item Build on existing BioBricks infrastructure
+  \item Use tabular data as a data source (tabular brick)
+  \item Map tabular data graph data (triple brick)
+  \item Load this triple brick into a triplestore
+  graph database or use directly
+  \end{enumerate}
+\end{frame}
+
+\section{Knowledge organization}
+\begin{frame}[fragile]{\secname}
+        \begin{figure}[tbp]%
+        \centering%
+        \input{gfx/knowledge-org.tex}%
+        %%\caption{\textbf{Knowledge organization}}\label{fig:knowledge-org}%
+        \end{figure}
+\end{frame}
+
+\section{Early prototype}
+\begin{frame}{\secname}
+	\begin{itemize}
+		\def\labelenumi{\arabic{enumi}.}
+		\item datasets: ICE, tox21, CTDbase, MeSH, HGNC, CosIng
+		\pause
+		\item Looking for
+		\begin{itemize}
+			\item New datasets
+			\item New use cases
+			\item Improvements to data modeling
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+%%% }}}
+%%% {{{ END
+
+% Blank frame
+%\begin{frame}\frametitle{\secname}
+%\end{frame}
+
+\end{document}
